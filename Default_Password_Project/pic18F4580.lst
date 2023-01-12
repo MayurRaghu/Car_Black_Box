@@ -1,0 +1,659 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.36 build -262312587 
+                                                                                               Thu Jan 12 08:21:57 2023
+
+Microchip Technology Omniscient Code Generator v1.36 (Free mode) build 201601150325
+     1                           	processor	18F4580
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+     7                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    14                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    15                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    16  0000                     _SSPADD	set	4040
+    17  0000                     _SSPBUF	set	4041
+    18  0000                     _SSPCON1	set	4038
+    19  0000                     _ACKDT	set	32301
+    20  0000                     _ACKEN	set	32300
+    21  0000                     _ACKSTAT	set	32302
+    22  0000                     _BCLIF	set	32011
+    23  0000                     _CKE	set	32318
+    24  0000                     _PEN	set	32298
+    25  0000                     _RCEN	set	32299
+    26  0000                     _RSEN	set	32297
+    27  0000                     _SEN	set	32296
+    28  0000                     _SMP	set	32319
+    29  0000                     _SSPIF	set	31987
+    30  0000                     _TRISC3	set	31907
+    31  0000                     _TRISC4	set	31908
+    32                           
+    33                           ; #config settings
+    34                           
+    35                           	psect	cinit
+    36  002F5A                     __pcinit:
+    37                           	opt stack 0
+    38  002F5A                     start_initialization:
+    39                           	opt stack 0
+    40  002F5A                     __initialization:
+    41                           	opt stack 0
+    42  002F5A                     end_of_initialization:
+    43                           	opt stack 0
+    44  002F5A                     __end_of__initialization:
+    45                           	opt stack 0
+    46  002F5A  0100               	movlb	0
+    47  002F5C  EFCD  F017         	goto	_main	;jump to C main() function
+    48                           
+    49                           	psect	cstackCOMRAM
+    50  000001                     __pcstackCOMRAM:
+    51                           	opt stack 0
+    52  000001                     i2c_write@data:
+    53                           	opt stack 0
+    54                           
+    55                           ; 1 bytes @ 0x0
+    56  000001                     	ds	1
+    57  000002                     write_ext_eeprom@data:
+    58                           	opt stack 0
+    59                           
+    60                           ; 1 bytes @ 0x1
+    61  000002                     	ds	1
+    62  000003                     write_ext_eeprom@wait:
+    63                           	opt stack 0
+    64                           
+    65                           ; 2 bytes @ 0x2
+    66  000003                     	ds	2
+    67  000005                     write_ext_eeprom@address:
+    68                           	opt stack 0
+    69                           
+    70                           ; 1 bytes @ 0x4
+    71  000005                     	ds	1
+    72  000006                     
+    73                           ; 1 bytes @ 0x5
+    74 ;;
+    75 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    76 ;;
+    77 ;; *************** function _main *****************
+    78 ;; Defined at:
+    79 ;;		line 4 in file "main.c"
+    80 ;; Parameters:    Size  Location     Type
+    81 ;;		None
+    82 ;; Auto vars:     Size  Location     Type
+    83 ;;		None
+    84 ;; Return value:  Size  Location     Type
+    85 ;;                  1    wreg      void 
+    86 ;; Registers used:
+    87 ;;		wreg, status,2, status,0, cstack
+    88 ;; Tracked objects:
+    89 ;;		On entry : 0/0
+    90 ;;		On exit  : 0/0
+    91 ;;		Unchanged: 0/0
+    92 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+    93 ;;      Params:         0       0       0       0       0       0       0
+    94 ;;      Locals:         0       0       0       0       0       0       0
+    95 ;;      Temps:          0       0       0       0       0       0       0
+    96 ;;      Totals:         0       0       0       0       0       0       0
+    97 ;;Total ram usage:        0 bytes
+    98 ;; Hardware stack levels required when called:    3
+    99 ;; This function calls:
+   100 ;;		_init_i2c
+   101 ;;		_write_ext_eeprom
+   102 ;; This function is called by:
+   103 ;;		Startup code after reset
+   104 ;; This function uses a non-reentrant model
+   105 ;;
+   106                           
+   107                           	psect	text0
+   108  002F9A                     __ptext0:
+   109                           	opt stack 0
+   110  002F9A                     _main:
+   111                           	opt stack 28
+   112                           
+   113                           ;main.c: 6: init_i2c();
+   114                           
+   115                           ;incstack = 0
+   116  002F9A  ECC2  F017         	call	_init_i2c	;wreg free
+   117                           
+   118                           ;main.c: 7: write_ext_eeprom(0xc8, '0');
+   119  002F9E  0E30               	movlw	48
+   120  002FA0  6E02               	movwf	write_ext_eeprom@data,c
+   121  002FA2  0EC8               	movlw	200
+   122  002FA4  ECE5  F017         	call	_write_ext_eeprom
+   123                           
+   124                           ;main.c: 8: write_ext_eeprom(0xc9, '0');
+   125  002FA8  0E30               	movlw	48
+   126  002FAA  6E02               	movwf	write_ext_eeprom@data,c
+   127  002FAC  0EC9               	movlw	201
+   128  002FAE  ECE5  F017         	call	_write_ext_eeprom
+   129                           
+   130                           ;main.c: 9: write_ext_eeprom(0xcA, '0');
+   131  002FB2  0E30               	movlw	48
+   132  002FB4  6E02               	movwf	write_ext_eeprom@data,c
+   133  002FB6  0ECA               	movlw	202
+   134  002FB8  ECE5  F017         	call	_write_ext_eeprom
+   135                           
+   136                           ;main.c: 10: write_ext_eeprom(0xcB, '0');
+   137  002FBC  0E30               	movlw	48
+   138  002FBE  6E02               	movwf	write_ext_eeprom@data,c
+   139  002FC0  0ECB               	movlw	203
+   140  002FC2  ECE5  F017         	call	_write_ext_eeprom
+   141  002FC6  EF00  F000         	goto	start
+   142  002FCA                     __end_of_main:
+   143                           	opt stack 0
+   144                           
+   145 ;; *************** function _write_ext_eeprom *****************
+   146 ;; Defined at:
+   147 ;;		line 5 in file "ext_eeprom.c"
+   148 ;; Parameters:    Size  Location     Type
+   149 ;;  address         1    wreg     unsigned char 
+   150 ;;  data            1    1[COMRAM] unsigned char 
+   151 ;; Auto vars:     Size  Location     Type
+   152 ;;  address         1    4[COMRAM] unsigned char 
+   153 ;;  wait            2    2[COMRAM] int 
+   154 ;; Return value:  Size  Location     Type
+   155 ;;                  1    wreg      void 
+   156 ;; Registers used:
+   157 ;;		wreg, status,2, status,0, cstack
+   158 ;; Tracked objects:
+   159 ;;		On entry : 0/0
+   160 ;;		On exit  : 0/0
+   161 ;;		Unchanged: 0/0
+   162 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   163 ;;      Params:         1       0       0       0       0       0       0
+   164 ;;      Locals:         3       0       0       0       0       0       0
+   165 ;;      Temps:          0       0       0       0       0       0       0
+   166 ;;      Totals:         4       0       0       0       0       0       0
+   167 ;;Total ram usage:        4 bytes
+   168 ;; Hardware stack levels used:    1
+   169 ;; Hardware stack levels required when called:    2
+   170 ;; This function calls:
+   171 ;;		_i2c_start
+   172 ;;		_i2c_stop
+   173 ;;		_i2c_write
+   174 ;; This function is called by:
+   175 ;;		_main
+   176 ;; This function uses a non-reentrant model
+   177 ;;
+   178                           
+   179                           	psect	text1
+   180  002FCA                     __ptext1:
+   181                           	opt stack 0
+   182  002FCA                     _write_ext_eeprom:
+   183                           	opt stack 28
+   184                           
+   185                           ;incstack = 0
+   186                           ;write_ext_eeprom@address stored from wreg
+   187  002FCA  6E05               	movwf	write_ext_eeprom@address,c
+   188                           
+   189                           ;ext_eeprom.c: 7: i2c_start();
+   190  002FCC  ECB4  F017         	call	_i2c_start	;wreg free
+   191                           
+   192                           ;ext_eeprom.c: 8: i2c_write(0xA0);
+   193  002FD0  0EA0               	movlw	160
+   194  002FD2  ECBC  F017         	call	_i2c_write
+   195                           
+   196                           ;ext_eeprom.c: 9: i2c_write(address);
+   197  002FD6  5005               	movf	write_ext_eeprom@address,w,c
+   198  002FD8  ECBC  F017         	call	_i2c_write
+   199                           
+   200                           ;ext_eeprom.c: 10: i2c_write(data);
+   201  002FDC  5002               	movf	write_ext_eeprom@data,w,c
+   202  002FDE  ECBC  F017         	call	_i2c_write
+   203                           
+   204                           ;ext_eeprom.c: 11: i2c_stop();
+   205  002FE2  ECB8  F017         	call	_i2c_stop	;wreg free
+   206                           
+   207                           ;ext_eeprom.c: 12: for(int wait = 50000;wait--;);
+   208  002FE6  0EC3               	movlw	195
+   209  002FE8  6E04               	movwf	write_ext_eeprom@wait+1,c
+   210  002FEA  0E50               	movlw	80
+   211  002FEC  6E03               	movwf	write_ext_eeprom@wait,c
+   212  002FEE                     l786:
+   213  002FEE  0603               	decf	write_ext_eeprom@wait,f,c
+   214  002FF0  A0D8               	btfss	status,0,c
+   215  002FF2  0604               	decf	write_ext_eeprom@wait+1,f,c
+   216  002FF4  2803               	incf	write_ext_eeprom@wait,w,c
+   217  002FF6  E1FB               	bnz	l786
+   218  002FF8  2804               	incf	write_ext_eeprom@wait+1,w,c
+   219  002FFA  B4D8               	btfsc	status,2,c
+   220  002FFC  0012               	return	
+   221  002FFE  D7F7               	goto	l786
+   222  003000                     __end_of_write_ext_eeprom:
+   223                           	opt stack 0
+   224                           status	equ	0xFD8
+   225                           
+   226 ;; *************** function _i2c_write *****************
+   227 ;; Defined at:
+   228 ;;		line 54 in file "i2c.c"
+   229 ;; Parameters:    Size  Location     Type
+   230 ;;  data            1    wreg     unsigned char 
+   231 ;; Auto vars:     Size  Location     Type
+   232 ;;  data            1    0[COMRAM] unsigned char 
+   233 ;; Return value:  Size  Location     Type
+   234 ;;                  1    wreg      void 
+   235 ;; Registers used:
+   236 ;;		wreg, cstack
+   237 ;; Tracked objects:
+   238 ;;		On entry : 0/0
+   239 ;;		On exit  : 0/0
+   240 ;;		Unchanged: 0/0
+   241 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   242 ;;      Params:         0       0       0       0       0       0       0
+   243 ;;      Locals:         1       0       0       0       0       0       0
+   244 ;;      Temps:          0       0       0       0       0       0       0
+   245 ;;      Totals:         1       0       0       0       0       0       0
+   246 ;;Total ram usage:        1 bytes
+   247 ;; Hardware stack levels used:    1
+   248 ;; Hardware stack levels required when called:    1
+   249 ;; This function calls:
+   250 ;;		_i2c_idle
+   251 ;; This function is called by:
+   252 ;;		_write_ext_eeprom
+   253 ;;		_read_ext_eeprom
+   254 ;; This function uses a non-reentrant model
+   255 ;;
+   256                           
+   257                           	psect	text2
+   258  002F78                     __ptext2:
+   259                           	opt stack 0
+   260  002F78                     _i2c_write:
+   261                           	opt stack 28
+   262                           
+   263                           ;incstack = 0
+   264                           ;i2c_write@data stored from wreg
+   265  002F78  6E01               	movwf	i2c_write@data,c
+   266                           
+   267                           ;i2c.c: 56: SSPBUF = data;
+   268  002F7A  C001  FFC9         	movff	i2c_write@data,4041	;volatile
+   269                           
+   270                           ;i2c.c: 57: i2c_idle();
+   271  002F7E  ECB0  F017         	call	_i2c_idle	;wreg free
+   272  002F82  0012               	return		;funcret
+   273  002F84                     __end_of_i2c_write:
+   274                           	opt stack 0
+   275                           status	equ	0xFD8
+   276                           
+   277 ;; *************** function _i2c_stop *****************
+   278 ;; Defined at:
+   279 ;;		line 42 in file "i2c.c"
+   280 ;; Parameters:    Size  Location     Type
+   281 ;;		None
+   282 ;; Auto vars:     Size  Location     Type
+   283 ;;		None
+   284 ;; Return value:  Size  Location     Type
+   285 ;;                  1    wreg      void 
+   286 ;; Registers used:
+   287 ;;		cstack
+   288 ;; Tracked objects:
+   289 ;;		On entry : 0/0
+   290 ;;		On exit  : 0/0
+   291 ;;		Unchanged: 0/0
+   292 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   293 ;;      Params:         0       0       0       0       0       0       0
+   294 ;;      Locals:         0       0       0       0       0       0       0
+   295 ;;      Temps:          0       0       0       0       0       0       0
+   296 ;;      Totals:         0       0       0       0       0       0       0
+   297 ;;Total ram usage:        0 bytes
+   298 ;; Hardware stack levels used:    1
+   299 ;; Hardware stack levels required when called:    1
+   300 ;; This function calls:
+   301 ;;		_i2c_idle
+   302 ;; This function is called by:
+   303 ;;		_write_ext_eeprom
+   304 ;;		_read_ext_eeprom
+   305 ;; This function uses a non-reentrant model
+   306 ;;
+   307                           
+   308                           	psect	text3
+   309  002F70                     __ptext3:
+   310                           	opt stack 0
+   311  002F70                     _i2c_stop:
+   312                           	opt stack 28
+   313                           
+   314                           ;i2c.c: 44: PEN = 1;
+   315                           
+   316                           ;incstack = 0
+   317  002F70  84C5               	bsf	4037,2,c	;volatile
+   318                           
+   319                           ;i2c.c: 45: i2c_idle();
+   320  002F72  ECB0  F017         	call	_i2c_idle	;wreg free
+   321  002F76  0012               	return		;funcret
+   322  002F78                     __end_of_i2c_stop:
+   323                           	opt stack 0
+   324                           status	equ	0xFD8
+   325                           
+   326 ;; *************** function _i2c_start *****************
+   327 ;; Defined at:
+   328 ;;		line 36 in file "i2c.c"
+   329 ;; Parameters:    Size  Location     Type
+   330 ;;		None
+   331 ;; Auto vars:     Size  Location     Type
+   332 ;;		None
+   333 ;; Return value:  Size  Location     Type
+   334 ;;                  1    wreg      void 
+   335 ;; Registers used:
+   336 ;;		cstack
+   337 ;; Tracked objects:
+   338 ;;		On entry : 0/0
+   339 ;;		On exit  : 0/0
+   340 ;;		Unchanged: 0/0
+   341 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   342 ;;      Params:         0       0       0       0       0       0       0
+   343 ;;      Locals:         0       0       0       0       0       0       0
+   344 ;;      Temps:          0       0       0       0       0       0       0
+   345 ;;      Totals:         0       0       0       0       0       0       0
+   346 ;;Total ram usage:        0 bytes
+   347 ;; Hardware stack levels used:    1
+   348 ;; Hardware stack levels required when called:    1
+   349 ;; This function calls:
+   350 ;;		_i2c_idle
+   351 ;; This function is called by:
+   352 ;;		_write_ext_eeprom
+   353 ;;		_read_ext_eeprom
+   354 ;; This function uses a non-reentrant model
+   355 ;;
+   356                           
+   357                           	psect	text4
+   358  002F68                     __ptext4:
+   359                           	opt stack 0
+   360  002F68                     _i2c_start:
+   361                           	opt stack 28
+   362                           
+   363                           ;i2c.c: 38: SEN = 1;
+   364                           
+   365                           ;incstack = 0
+   366  002F68  80C5               	bsf	4037,0,c	;volatile
+   367                           
+   368                           ;i2c.c: 39: i2c_idle();
+   369  002F6A  ECB0  F017         	call	_i2c_idle	;wreg free
+   370  002F6E  0012               	return		;funcret
+   371  002F70                     __end_of_i2c_start:
+   372                           	opt stack 0
+   373                           status	equ	0xFD8
+   374                           
+   375 ;; *************** function _i2c_idle *****************
+   376 ;; Defined at:
+   377 ;;		line 22 in file "i2c.c"
+   378 ;; Parameters:    Size  Location     Type
+   379 ;;		None
+   380 ;; Auto vars:     Size  Location     Type
+   381 ;;		None
+   382 ;; Return value:  Size  Location     Type
+   383 ;;                  1    wreg      void 
+   384 ;; Registers used:
+   385 ;;		None
+   386 ;; Tracked objects:
+   387 ;;		On entry : 0/0
+   388 ;;		On exit  : 0/0
+   389 ;;		Unchanged: 0/0
+   390 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   391 ;;      Params:         0       0       0       0       0       0       0
+   392 ;;      Locals:         0       0       0       0       0       0       0
+   393 ;;      Temps:          0       0       0       0       0       0       0
+   394 ;;      Totals:         0       0       0       0       0       0       0
+   395 ;;Total ram usage:        0 bytes
+   396 ;; Hardware stack levels used:    1
+   397 ;; This function calls:
+   398 ;;		Nothing
+   399 ;; This function is called by:
+   400 ;;		_i2c_start
+   401 ;;		_i2c_stop
+   402 ;;		_i2c_write
+   403 ;;		_i2c_rep_start
+   404 ;;		_i2c_rx_mode
+   405 ;; This function uses a non-reentrant model
+   406 ;;
+   407                           
+   408                           	psect	text5
+   409  002F60                     __ptext5:
+   410                           	opt stack 0
+   411  002F60                     _i2c_idle:
+   412                           	opt stack 28
+   413  002F60                     l64:
+   414  002F60  A69E               	btfss	3998,3,c	;volatile
+   415  002F62  D7FE               	goto	l64
+   416                           
+   417                           ;i2c.c: 25: SSPIF = 0;
+   418  002F64  969E               	bcf	3998,3,c	;volatile
+   419  002F66  0012               	return		;funcret
+   420  002F68                     __end_of_i2c_idle:
+   421                           	opt stack 0
+   422                           status	equ	0xFD8
+   423                           
+   424 ;; *************** function _init_i2c *****************
+   425 ;; Defined at:
+   426 ;;		line 3 in file "i2c.c"
+   427 ;; Parameters:    Size  Location     Type
+   428 ;;		None
+   429 ;; Auto vars:     Size  Location     Type
+   430 ;;		None
+   431 ;; Return value:  Size  Location     Type
+   432 ;;                  1    wreg      void 
+   433 ;; Registers used:
+   434 ;;		wreg, status,2
+   435 ;; Tracked objects:
+   436 ;;		On entry : 0/0
+   437 ;;		On exit  : 0/0
+   438 ;;		Unchanged: 0/0
+   439 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   440 ;;      Params:         0       0       0       0       0       0       0
+   441 ;;      Locals:         0       0       0       0       0       0       0
+   442 ;;      Temps:          0       0       0       0       0       0       0
+   443 ;;      Totals:         0       0       0       0       0       0       0
+   444 ;;Total ram usage:        0 bytes
+   445 ;; Hardware stack levels used:    1
+   446 ;; This function calls:
+   447 ;;		Nothing
+   448 ;; This function is called by:
+   449 ;;		_main
+   450 ;; This function uses a non-reentrant model
+   451 ;;
+   452                           
+   453                           	psect	text6
+   454  002F84                     __ptext6:
+   455                           	opt stack 0
+   456  002F84                     _init_i2c:
+   457                           	opt stack 30
+   458                           
+   459                           ;i2c.c: 6: TRISC3 = 1;
+   460                           
+   461                           ;incstack = 0
+   462  002F84  8694               	bsf	3988,3,c	;volatile
+   463                           
+   464                           ;i2c.c: 7: TRISC4 = 1;
+   465  002F86  8894               	bsf	3988,4,c	;volatile
+   466                           
+   467                           ;i2c.c: 9: SSPCON1 = 0x28;
+   468  002F88  0E28               	movlw	40
+   469  002F8A  6EC6               	movwf	4038,c	;volatile
+   470                           
+   471                           ;i2c.c: 11: SSPADD = 0x31;
+   472  002F8C  0E31               	movlw	49
+   473  002F8E  6EC8               	movwf	4040,c	;volatile
+   474                           
+   475                           ;i2c.c: 13: CKE = 0;
+   476  002F90  9CC7               	bcf	4039,6,c	;volatile
+   477                           
+   478                           ;i2c.c: 15: SMP = 1;
+   479  002F92  8EC7               	bsf	4039,7,c	;volatile
+   480                           
+   481                           ;i2c.c: 17: SSPIF = 0;
+   482  002F94  969E               	bcf	3998,3,c	;volatile
+   483                           
+   484                           ;i2c.c: 19: BCLIF = 0;
+   485  002F96  96A1               	bcf	4001,3,c	;volatile
+   486  002F98  0012               	return		;funcret
+   487  002F9A                     __end_of_init_i2c:
+   488                           	opt stack 0
+   489  0000                     status	equ	0xFD8
+   490                           status	equ	0xFD8
+   491                           
+   492                           	psect	rparam
+   493  0000                     status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      5       5
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_write_ext_eeprom
+    _write_ext_eeprom->_i2c_write
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     254
+                           _init_i2c
+                   _write_ext_eeprom
+ ---------------------------------------------------------------------------------
+ (1) _write_ext_eeprom                                     4     3      1     254
+                                              1 COMRAM     4     3      1
+                          _i2c_start
+                           _i2c_stop
+                          _i2c_write
+ ---------------------------------------------------------------------------------
+ (2) _i2c_write                                            1     1      0      15
+                                              0 COMRAM     1     1      0
+                           _i2c_idle
+ ---------------------------------------------------------------------------------
+ (2) _i2c_stop                                             0     0      0       0
+                           _i2c_idle
+ ---------------------------------------------------------------------------------
+ (2) _i2c_start                                            0     0      0       0
+                           _i2c_idle
+ ---------------------------------------------------------------------------------
+ (3) _i2c_idle                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _init_i2c                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _init_i2c
+   _write_ext_eeprom
+     _i2c_start
+       _i2c_idle
+     _i2c_stop
+       _i2c_idle
+     _i2c_write
+       _i2c_idle
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F      5       5       1        5.3%
+STACK                0      0       0       2        0.0%
+ABS                  0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BIGRAM             5FF      0       0      16        0.0%
+DATA                 0      0       0      17        0.0%
+BITSFR_3             0      0       0      40        0.0%
+SFR_3                0      0       0      40        0.0%
+BITSFR_2             0      0       0      40        0.0%
+SFR_2                0      0       0      40        0.0%
+BITSFR_1             0      0       0      40        0.0%
+SFR_1                0      0       0      40        0.0%
+BITSFR               0      0       0      40        0.0%
+SFR                  0      0       0      40        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.36 build -262312587 
+Symbol Table                                                                                   Thu Jan 12 08:21:57 2023
+
+                       l64 2F60                        _CKE 007E3E                        l786 2FEE  
+                      _PEN 007E2A                        _SEN 007E28                        _SMP 007E3F  
+                     _RCEN 007E2B                       _RSEN 007E29                       _main 2F9A  
+                     start 0000               ___param_bank 000010                      ?_main 0001  
+                    _ACKEN 007E2C                      _ACKDT 007E2D                      _BCLIF 007D0B  
+                    _SSPIF 007CF3                      status 000FD8            __initialization 2F5A  
+             __end_of_main 2FCA           __end_of_i2c_idle 2F68           __end_of_i2c_stop 2F78  
+                   ??_main 0006              __activetblptr 000000       write_ext_eeprom@data 0002  
+     write_ext_eeprom@wait 0003           _write_ext_eeprom 2FCA                     _SSPADD 000FC8  
+                   _TRISC3 007CA3                     _TRISC4 007CA4                     _SSPBUF 000FC9  
+       __size_of_i2c_start 0008         __size_of_i2c_write 000C           __end_of_init_i2c 2F9A  
+               __accesstop 0060    __end_of__initialization 2F5A              ___rparam_used 000001  
+           __pcstackCOMRAM 0001          __end_of_i2c_start 2F70          __end_of_i2c_write 2F84  
+  write_ext_eeprom@address 0005                  ?_i2c_idle 0001                  ?_i2c_stop 0001  
+                  _ACKSTAT 007E2E                    _SSPCON1 000FC6                 ??_i2c_idle 0001  
+               ??_i2c_stop 0001                  ?_init_i2c 0001                    __Hparam 0000  
+                  __Lparam 0000   __end_of_write_ext_eeprom 3000                    __pcinit 2F5A  
+                  __ramtop 0600                    __ptext0 2F9A                    __ptext1 2FCA  
+                  __ptext2 2F78                    __ptext3 2F70                    __ptext4 2F68  
+                  __ptext5 2F60                    __ptext6 2F84       end_of_initialization 2F5A  
+               ??_init_i2c 0001              i2c_write@data 0001        start_initialization 2F5A  
+                _i2c_start 2F68                  _i2c_write 2F78          __size_of_i2c_idle 0008  
+        __size_of_i2c_stop 0008                 ?_i2c_start 0001                 ?_i2c_write 0001  
+        __size_of_init_i2c 0016          ?_write_ext_eeprom 0002         ??_write_ext_eeprom 0003  
+              ??_i2c_start 0001                ??_i2c_write 0001                   _i2c_idle 2F60  
+                 _i2c_stop 2F70                   __Hrparam 0000                   __Lrparam 0000  
+                 _init_i2c 2F84              __size_of_main 0030  __size_of_write_ext_eeprom 0036  

@@ -1,0 +1,71 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[p mainexit ]
+"5 i2c.h
+[v _init_i2c `(v ~T0 @X0 0 ef ]
+"7 ext_eeprom.h
+[v _write_ext_eeprom `(v ~T0 @X0 0 ef2`uc`uc ]
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stdarg.h: 7: typedef void * va_list[1];
+[; ;stdarg.h: 10: extern void * __va_start(void);
+[; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
+[; ;stdio.h: 43: struct __prbuf
+[; ;stdio.h: 44: {
+[; ;stdio.h: 45: char * ptr;
+[; ;stdio.h: 46: void (* func)(char);
+[; ;stdio.h: 47: };
+[; ;errno.h: 29: extern int errno;
+[; ;conio.h: 12: extern void init_uart(void);
+[; ;conio.h: 14: extern char getch(void);
+[; ;conio.h: 15: extern char getche(void);
+[; ;conio.h: 16: extern void putch(char);
+[; ;conio.h: 17: extern void ungetch(char);
+[; ;conio.h: 19: extern __bit kbhit(void);
+[; ;conio.h: 23: extern char * cgets(char *);
+[; ;conio.h: 24: extern void cputs(const char *);
+[; ;stdio.h: 88: extern int cprintf(char *, ...);
+[; ;stdio.h: 93: extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+[; ;stdio.h: 183: extern char * gets(char *);
+[; ;stdio.h: 184: extern int puts(const char *);
+[; ;stdio.h: 185: extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+[; ;stdio.h: 186: extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+[; ;stdio.h: 187: extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+[; ;stdio.h: 188: extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+[; ;stdio.h: 189: extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+[; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+[; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
+[; ;stdio.h: 195: extern int printf(const char *, ...);
+[; ;ext_eeprom.h: 7: void write_ext_eeprom(unsigned char address1, unsigned char data);
+[; ;ext_eeprom.h: 8: unsigned char read_ext_eeprom(unsigned char address1);
+[; ;i2c.h: 5: void init_i2c(void);
+[; ;i2c.h: 6: void i2c_start(void);
+[; ;i2c.h: 7: void i2c_rep_start(void);
+[; ;i2c.h: 8: void i2c_stop(void);
+[; ;i2c.h: 9: void i2c_write(unsigned char data);
+[; ;i2c.h: 10: unsigned char i2c_read(void);
+"4 main.c
+[v _main `(v ~T0 @X0 1 ef ]
+"5
+{
+[; ;main.c: 4: void main()
+[; ;main.c: 5: {
+[e :U _main ]
+[f ]
+[; ;main.c: 6: init_i2c();
+"6
+[e ( _init_i2c ..  ]
+[; ;main.c: 7: write_ext_eeprom(0xc8, '0');
+"7
+[e ( _write_ext_eeprom (2 , -> -> 200 `i `uc -> -> 48 `ui `uc ]
+[; ;main.c: 8: write_ext_eeprom(0xc9, '0');
+"8
+[e ( _write_ext_eeprom (2 , -> -> 201 `i `uc -> -> 48 `ui `uc ]
+[; ;main.c: 9: write_ext_eeprom(0xcA, '0');
+"9
+[e ( _write_ext_eeprom (2 , -> -> 202 `i `uc -> -> 48 `ui `uc ]
+[; ;main.c: 10: write_ext_eeprom(0xcB, '0');
+"10
+[e ( _write_ext_eeprom (2 , -> -> 203 `i `uc -> -> 48 `ui `uc ]
+[; ;main.c: 11: }
+"11
+[e :UE 2 ]
+}
